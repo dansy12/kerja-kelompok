@@ -132,7 +132,35 @@ public class ProdukModel {
         }
         return data;
     }
-    
+     public List tampilDenganId(String id){
+          List data = new ArrayList();
+        ResultSet rs = null;
+        try {
+            String sql = "select * from barang where id="+id;
+            rs = db.ambilData(sql);
+ 
+            while (rs.next()) {
+                ProdukModel pm = new ProdukModel();
+                pm.setid(rs.getString("id"));
+                pm.setbrand(rs.getString("brand"));
+                pm.setkategori(rs.getString("kategori"));
+                pm.setnama(rs.getString("nama"));
+                pm.setharga(rs.getString("harga"));
+                pm.setfoto1(rs.getString("foto1"));
+                pm.setfoto2(rs.getString("foto2"));
+                pm.setfoto3(rs.getString("foto3"));
+                pm.setfoto4(rs.getString("foto4"));
+                pm.setfoto5(rs.getString("foto5"));
+                pm.setdes(rs.getString("des"));
+                data.add(pm);
+            }
+            db.diskonek(rs);
+        } catch (Exception a) {
+            System.out.println("Terjadi kesalahaan tampil produk, pada :\n" + a);
+        }
+        return data;   
+     }
+     
     public List tampilkeyboard() {
         List data = new ArrayList();
         ResultSet rs = null;

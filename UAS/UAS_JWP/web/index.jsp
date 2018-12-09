@@ -222,11 +222,11 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="index.jsp" method="post">
-                        <a href="tampilan/tampil.html"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
-                          <a href="tampilan/tampil.html">Rp. <%=data.get(x).getharga()%></a>
+                          <a href="tampil.jsp">Rp. <%=data.get(x).getharga()%></a>
                           <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
                           <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
                           <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
@@ -259,11 +259,11 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="index.jsp" method="post">
-                        <a href="tampilan/tampil.html"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
-                          <a href="tampilan/tampil.html">Rp. <%=data.get(x).getharga()%></a>
+                          <a href="tampil.jsp?id=<%=data.get(x).getid()%>">Rp. <%=data.get(x).getharga()%></a>
                           <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
                           <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
                           <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
@@ -296,12 +296,12 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="index.jsp" method="post">
-                        <a href="tampilan/tampil.html"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p>
-                          <a href="tampilan/tampil.html">Rp. <%=data.get(x).getharga()%></a>
+                          <a href="tampil.jsp?id=<%=data.get(x).getid()%>">Rp. <%=data.get(x).getharga()%></a>
                           <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
                           <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
                           <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
