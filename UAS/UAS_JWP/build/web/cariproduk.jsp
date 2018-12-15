@@ -189,7 +189,7 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="logitech.jsp" method="post">
-                        <a href="tampil.jsp"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 

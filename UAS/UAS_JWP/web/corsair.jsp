@@ -135,8 +135,9 @@
           <div class="col s12">
             <h3>Search Here</h3>
             <div class="input-field">
-              <input type="text" id="autocomplete-input" 
-              class="white black-text autocomplete">
+              <form action="cariproduk.jsp" method="get">
+              <input name="cari" type="text" id="autocomplete-input" class="white black-text autocomplete">
+                </form>
             </div>
           </div>
           
@@ -188,7 +189,7 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="corsair.jsp" method="post">
-                        <a href="tampilan/tampil.html"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
