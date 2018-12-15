@@ -1,7 +1,28 @@
 ﻿# Host: localhost  (Version 5.5.5-10.1.36-MariaDB)
-# Date: 2018-12-09 00:01:46
+# Date: 2018-12-10 00:28:36
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
+
+#
+# Structure for table "admin"
+#
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL,
+  `email` varchar(25) NOT NULL DEFAULT '',
+  `notlp` varchar(255) DEFAULT NULL,
+  `regdate` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+#
+# Data for table "admin"
+#
+
+INSERT INTO `admin` VALUES (4,'don','123','null','087883983642','2018-12-09'),(5,'ibrahim','ibra','null','12344677678768','2018-12-09');
 
 #
 # Structure for table "barang"

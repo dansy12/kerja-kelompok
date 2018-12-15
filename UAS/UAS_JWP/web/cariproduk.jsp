@@ -20,9 +20,9 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>GamingForEveryone.com</title>
+      <title>Gaming For Everyone</title>
     </head>  
-    <body>
+      <body 
         <!-- navbar -->
       <div id="home" class="navbar-fixed scrollspy">
         <nav class="red darken-2">
@@ -30,15 +30,14 @@
             <a href="index.jsp" class="brand-logo center">GFE</a>
             <a href="index.jsp" data-target="mobile-nav" class="sidenav-trigger">
               <i class="material-icons">menu</i></a>
-            <ul class="left hide-on-med-and-down">
-              <li><a href="#about">About Us</a></li>
+              <ul class="left hide-on-med-and-down">
               <li><a href="#clients">Brand</a></li>
-              <li><a href="#services">Service</a></li>
               <li><a href="#product">Product</a></li>
               <li><a href="#contact">Contact Us</a></li>
             </ul>
             <ul class="right hide-on-med-and-down">
                 <%
+                    String cari = request.getParameter("cari");
                     String id = request.getParameter("id");
                     if(id!=null)
                     {
@@ -50,7 +49,7 @@
                         cart.addItem(id, nama, price.floatValue(), 1, brand, kategori, foto );
                     }
                 %>       
-                    <%
+               <%
                         if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
                     %>
                     <li><a class="waves-effect waves-light btn white darken-1 red-text" href="signup.jsp">Sign Up</a></li>
@@ -58,18 +57,18 @@
                     <%} else {
                     %>
                     <li class="active">
-                    <%
-                        if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
-                    %>
+                        <%
+                            if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+                        %>
 
-                    <%} else {
-                    %>
-                    &nbsp;Hello
-                    <%=session.getAttribute("userid")%>&nbsp;
-                    <%
-                        }
-                    %>
-                  </li>
+                        <%} else {
+                        %>
+                        &nbsp;Hello
+                        <%=session.getAttribute("userid")%>&nbsp;
+                        <%
+                            }
+                        %>
+                    </li>
                     <li><a class="waves-effect waves-light btn red white-text" href="logout.jsp">Sign Out</a></li>
                     <%
                         }
@@ -77,12 +76,11 @@
               <li><a href="cart.jsp"><i class="material-icons">shopping_cart</i></a></li>
               <li><%=            
                     cart.getNumOfItems()
-                    %>
-              </li>
+                %></li>
               <li><a href="cart.jsp"></a></li>
             </ul>
           </div>
-        </nav>
+        </nav> 
       </div>
 
 
@@ -150,22 +148,6 @@
         
       </section>
 
-
-    <!-- About Us -->
-    <section id="about" class="about scrollspy">
-      <div class="container">
-        <div class="row">
-          <h3 class="center light grey-text text-darken-3">About Us</h3>
-        <div class="col m12 light">
-          <h5 class="center">We Are Profesional</h5>
-          <p class="center">Gaming for Everyone menjual Gear Gaming dengan kualitas terbaik dan Brand - brand terkemuka di jagat raya ini.</p>
-        </div>
-        </div>
-      </div>
-    </section>
-
-
-
     <!-- CLient Parallax -->
     <div id="clients" class="parallax-container scrollspy">
       <div class="parallax"><img src="img/Login.jpg"></div>
@@ -174,7 +156,7 @@
         <h3 class="center light white-text">Brand</h3>
         <div class="row">
           <div class="col m3 s12 center">
-              <a href="logitech.jsp"><img src="img/Clients/logitech.png"></a>
+              <a href="logitech.jsp"><img src="img/Clients/logitech.png" href=""></a>
           </div>
           <div class="col m3 s12 center">
               <a href="steelseries.jsp"><img src="img/Clients/steelseries.png"> </a>
@@ -189,61 +171,29 @@
       </div>
     </div>
 
-
-    <!-- Services -->
-    <section id="services" class="services grey lighten-3 scrollspy">
-      <div class="container">
-        <div class="row">
-          <h3 class="light center grey-text text-darken-3">Our Service</h3>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">FS</i>
-              <h5>Fast Response</h5>
-              <p>Respon yang cepat agar kalian para Gamers tidak perlu menunggu lama untuk memesan Gear Gaming yang kalian inginkan</p>
-            </div>
-          </div>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">GQ</i>
-              <h5>Good Quality</h5>
-              <p>Kalian para Gamers dapat mendapatkan Gear Gaming dengan kualitas terbaik di Gamingforeveryone.com</p>
-            </div>
-          </div>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">FD</i>
-              <h5>Fast Delivery</h5>
-              <p>Kalian para Gamers akan dengan cepat mendapatkan Gear Gaming yang kalian mau di Gamingforeveryone.com</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Keyboard -->
+    <!-- Section brand -->
     <section id="product" class="product scrollspy">
       <div class="container">
-        <h3 class="light grey-text text-darken-3">Keyboard</h3>
+        <h3 class="light grey-text text-darken-3">Cari Produk "<%=cari %>"</h3>
         <div class="row">
                     <%
                         ProdukModel pm = new ProdukModel();
                         List<ProdukModel> data = new ArrayList<ProdukModel>();
-                        String ket = request.getParameter("ket");
-                        if (ket == null) {
-                            data = pm.tampilkeyboard();
+                        
+                        if (cari != null) {
+                            data = pm.tampilCari(cari);
                         }
                         for (int x = 0; x < data.size(); x++) {
                     %>
             <div class="col m3 s12">
               <div class="card small">
                 <div class="card-image">
-                    <form action="index.jsp" method="post">
-                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>">
-                         <img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                    <form action="logitech.jsp" method="post">
+                        <a href="tampil.jsp"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
-                            <a href="tampil.jsp">Rp. <%=data.get(x).getharga()%></a>
+                          <a href="tampilan/tampil.html">Rp. <%=data.get(x).getharga()%></a>
                           <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
                           <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
                           <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
@@ -257,82 +207,6 @@
             </div>
                 <% }%>
         </div>               
-        <a class="waves-effect waves-light btn red darken-2" href="key.jsp">View All</a>
-      </div>
-    </section>
-   
-    <!-- Section Mouse -->
-    <section id="mouse" class="mouse grey lighten-3">
-      <div class="container">
-        <h3 class="light grey-text text-darken-3">Mouse</h3>
-        <div class="row">
-                    <%
-                        if (ket == null) {
-                            data = pm.tampilmouse();
-                        }
-                        for (int x = 0; x < data.size(); x++) {
-                    %>
-            <div class="col m3 s12">
-              <div class="card small">
-                <div class="card-image">
-                    <form action="index.jsp" method="post">
-                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
-                        </div>
-                        <div class="card-content">
-                          <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
-                          <a href="tampil.jsp?id=<%=data.get(x).getid()%>">Rp. <%=data.get(x).getharga()%></a>
-                          <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
-                          <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
-                          <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
-                          <input type="hidden" name="price" value="<%=data.get(x).getharga()%>">
-                          <input type="hidden" name="brand" value="<%=data.get(x).getbrand()%>">
-                          <input type="hidden" name="kategori" value="<%=data.get(x).getkategori()%>"><br><br>
-                          <input type="submit" name="Submit" value="Add">
-                        </div>
-                    </form>
-              </div>
-            </div>
-                <% }%>
-        </div>               
-        <a class="waves-effect waves-light btn red darken-2" href="mouse.jsp">View All</a>
-      </div>
-    </section>
-
-    <!-- Section Headset -->
-    <section id="headset" class="headset white lighten-3">
-      <div class="container">
-        <h3 class="light grey-text text-darken-3">Headset</h3>
-        <div class="row">
-                    <%
-                        if (ket == null) {
-                            data = pm.tampilheadset();
-                        }
-                        for (int x = 0; x < data.size(); x++) {
-                    %>
-            <div class="col m3 s12">
-              <div class="card small">
-                <div class="card-image">
-                    <form action="index.jsp" method="post">
-                         <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
-                        <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
-                        </div>
-                        <div class="card-content">
-                          <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p>
-                          <a href="tampil.jsp?id=<%=data.get(x).getid()%>">Rp. <%=data.get(x).getharga()%></a>
-                          <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
-                          <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
-                          <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
-                          <input type="hidden" name="price" value="<%=data.get(x).getharga()%>">
-                          <input type="hidden" name="brand" value="<%=data.get(x).getbrand()%>">
-                          <input type="hidden" name="kategori" value="<%=data.get(x).getkategori()%>"><br><br>
-                          <input type="submit" name="Submit" value="Add">
-                        </div>
-                    </form>
-              </div>
-            </div>
-                <% }%>
-        </div>               
-        <a class="waves-effect waves-light btn red darken-2" href="headset.jsp">View All</a>
       </div>
     </section>
 

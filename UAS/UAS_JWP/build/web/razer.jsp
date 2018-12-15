@@ -30,6 +30,11 @@
             <a href="index.jsp" class="brand-logo center">GFE</a>
             <a href="index.jsp" data-target="mobile-nav" class="sidenav-trigger">
               <i class="material-icons">menu</i></a>
+              <ul class="left hide-on-med-and-down">
+              <li><a href="#clients">Brand</a></li>
+              <li><a href="#product">Product</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
             <ul class="right hide-on-med-and-down">
                 <%
                     String id = request.getParameter("id");
@@ -43,8 +48,30 @@
                         cart.addItem(id, nama, price.floatValue(), 1, brand, kategori, foto );
                     }
                 %>       
-               <li><a class="waves-effect waves-light btn red white-text" href="login.html">Login</a></li>
-              <li><a class="waves-effect waves-light btn white darken-1 red-text" href="signup.html">Sign Up</a></li>
+               <%
+                        if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+                    %>
+                    <li><a class="waves-effect waves-light btn white darken-1 red-text" href="signup.jsp">Sign Up</a></li>
+                    <li><a class="waves-effect waves-light btn red white-text" href="login.jsp">Sign In</a></li>
+                    <%} else {
+                    %>
+                    <li class="active">
+                        <%
+                            if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+                        %>
+
+                        <%} else {
+                        %>
+                        &nbsp;Hello
+                        <%=session.getAttribute("userid")%>&nbsp;
+                        <%
+                            }
+                        %>
+                    </li>
+                    <li><a class="waves-effect waves-light btn red white-text" href="logout.jsp">Sign Out</a></li>
+                    <%
+                        }
+                    %>
               <li><a href="cart.jsp"><i class="material-icons">shopping_cart</i></a></li>
               <li><%=            
                     cart.getNumOfItems()
@@ -52,7 +79,7 @@
               <li><a href="cart.jsp"></a></li>
             </ul>
           </div>
-        </nav>
+        </nav> 
       </div>
 
 
@@ -187,7 +214,7 @@
       <div class="container">
         <h3 class="light grey-text text-darken-3 center">Contact Us</h3>
         <div class="row">
-          <div class="col m5 s12">
+          <div class="col m6 s14">
             <div class="card-panel red darken-2 center white-text">
               <i class="material-icons">email</i>
               <h5>Alamat</h5>
@@ -198,36 +225,16 @@
                   Tangerang Selatan
                   15310</p>
             </div>
-            <ul class="collection with-header">
-              <li class="collection-header"><h4 class="center">Contact</h4></li>
-              <li class="collection-item"> <i class="material-icons">I</i> instagram:  @GFE_Gaming</li>
-              <li class="collection-item"><i class="material-icons">T</i>  081211455647</li>
-              <li class="collection-item"><i class="material-icons">F</i> Facebook : GFE_Gaming</li>
-            </ul>
+            
           </div>
-          <div class="col m7 s12">
-            <form>
-              <div class="card-panel">
-                <h5>Please Fill Out This form</h5>
-                <div class="input-field">
-                <input type="text" name="name" id="name" required class="validate">
-                <label for="name">Name</label>
-              </div>
-              <div class="input-field">
-                <input type="email" name="email" id="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field">
-                <input type="text" name="phone" id="phone" required class="validate">
-                <label for="phone">Phone Number</label>
-              </div>
-              <div class="input-field">
-                <textarea name="message" id="message" class="materialize-textarea"></textarea>
-                <label for="message">Message</label>
-              </div>
-              <button type="submit" class="btn red darken-2">Send</button>
-              </div>
-            </form>
+          <div class="col m6 s12">
+              <center>
+            <ul class="collection with-header">
+                <li class="collection-item"> <img src="img/instagram.png" width="30" height="30"><br>@GFE_Gaming</li>
+              <li class="collection-item"><img src="img/wa.jpg" width="30" height="30"><br>081211455647</li>
+              <li class="collection-item"><img src="img/facebook.png" width="30" height="30"><br>GFE_Gaming</li>
+            </ul>
+                  </center>
           </div>
         </div>
       </div>

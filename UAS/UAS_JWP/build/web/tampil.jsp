@@ -20,6 +20,7 @@
 		<link rel="import" href="bower_components/iron-icons/iron-icons.html">
 	</head>
 	<body>
+      
 	<%
                         ProdukModel pm = new ProdukModel();
                         List<ProdukModel> data = new ArrayList<ProdukModel>();
@@ -32,12 +33,6 @@
 		<div class="container" style="width: 100%">
 			<!-- COVER IMAGE AND FLOATING BUTTON -->
 			<div class="cover-image"></div>	
-			<div class="desktop-fab-container ">
-				<!-- REPLACE WITH YOUR APP URL -->
-     			<a href="../index.html">
-     				<paper-fab class="wow fadeInUp desktop-fab" icon="shop"></paper-fab>
-     			</a>
-			</div>
 			
 			<!-- ICON, NAME AND DESCRIPTION -->
 			<div class="wow fadeInUp content-card">
@@ -70,23 +65,23 @@
 			<!-- OTHER APPS BY YOU -->
 			<div class="wow fadeInUp content-works"> 
 			    <div class="screenshot-item">
-                    <a href="../img/1.png" data-featherlight="image">
-                        <img src="img/<%=data.get(x).getfoto1()%>">
+                    <a href="img/<%=data.get(x).getfoto2()%>" data-featherlight="image">
+                        <img src="img/<%=data.get(x).getfoto2()%>">
                     </a>
                 </div>
                 <div class="screenshot-item">
-                    <a href="../img/2.jpeg" data-featherlight="image">
-                        <img src=img/<%=data.get(x).getfoto2()%>">
-                    </a>
-                </div>
-                <div class="screenshot-item">
-                    <a href="../img/3.jpeg" data-featherlight="image">
+                    <a href="img/<%=data.get(x).getfoto3()%>" data-featherlight="image">
                         <img src="img/<%=data.get(x).getfoto3()%>">
                     </a>
                 </div>
                 <div class="screenshot-item">
-                    <a href="../img/4.jpeg" data-featherlight="image">
+                    <a href="img/<%=data.get(x).getfoto4()%>" data-featherlight="image">
                         <img src="img/<%=data.get(x).getfoto4()%>">
+                    </a>
+                </div>
+                <div class="screenshot-item">
+                    <a href="img/<%=data.get(x).getfoto5()%>" data-featherlight="image">
+                        <img src="img/<%=data.get(x).getfoto5()%>">
                     </a>
                 </div>
      	    </div>
@@ -137,4 +132,4 @@
 			});
 		</script>
 	</body>
-</html>	
+</html> 

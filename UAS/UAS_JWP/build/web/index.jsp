@@ -20,9 +20,9 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Gaming For Everyone</title>
+      <title>GamingForEveryone.com</title>
     </head>  
-      <body 
+    <body>
         <!-- navbar -->
       <div id="home" class="navbar-fixed scrollspy">
         <nav class="red darken-2">
@@ -50,12 +50,35 @@
                         cart.addItem(id, nama, price.floatValue(), 1, brand, kategori, foto );
                     }
                 %>       
-               <li><a class="waves-effect waves-light btn red white-text" href="login.html">Login</a></li>
-              <li><a class="waves-effect waves-light btn white darken-1 red-text" href="signup.html">Sign Up</a></li>
+                    <%
+                        if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+                    %>
+                    <li><a class="waves-effect waves-light btn white darken-1 red-text" href="signup.jsp">Sign Up</a></li>
+                    <li><a class="waves-effect waves-light btn red white-text" href="login.jsp">Sign In</a></li>
+                    <%} else {
+                    %>
+                    <li class="active">
+                    <%
+                        if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+                    %>
+
+                    <%} else {
+                    %>
+                    &nbsp;Hello
+                    <%=session.getAttribute("userid")%>&nbsp;
+                    <%
+                        }
+                    %>
+                  </li>
+                    <li><a class="waves-effect waves-light btn red white-text" href="logout.jsp">Sign Out</a></li>
+                    <%
+                        }
+                    %>
               <li><a href="cart.jsp"><i class="material-icons">shopping_cart</i></a></li>
               <li><%=            
                     cart.getNumOfItems()
-                %></li>
+                    %>
+              </li>
               <li><a href="cart.jsp"></a></li>
             </ul>
           </div>
@@ -115,8 +138,9 @@
           <div class="col s12">
             <h3>Search Here</h3>
             <div class="input-field">
-              <input type="text" id="autocomplete-input" 
-              class="white black-text autocomplete">
+                <form action="cariproduk.jsp" method="get">
+              <input name="cari" type="text" id="autocomplete-input" class="white black-text autocomplete">
+                </form>
             </div>
           </div>
           
@@ -134,12 +158,7 @@
           <h3 class="center light grey-text text-darken-3">About Us</h3>
         <div class="col m12 light">
           <h5 class="center">We Are Profesional</h5>
-          <p class="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p class="center">Gaming for Everyone menjual Gear Gaming dengan kualitas terbaik dan Brand - brand terkemuka di jagat raya ini.</p>
         </div>
         </div>
       </div>
@@ -155,7 +174,7 @@
         <h3 class="center light white-text">Brand</h3>
         <div class="row">
           <div class="col m3 s12 center">
-              <a href="logitech.jsp"><img src="img/Clients/logitech.png" href=""></a>
+              <a href="logitech.jsp"><img src="img/Clients/logitech.png"></a>
           </div>
           <div class="col m3 s12 center">
               <a href="steelseries.jsp"><img src="img/Clients/steelseries.png"> </a>
@@ -178,26 +197,23 @@
           <h3 class="light center grey-text text-darken-3">Our Service</h3>
           <div class="col m4 s12">
             <div class="card-panel center">
-              <i class="material-icons medium">desktop_windows</i>
-              <h5>Web Development</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
+              <i class="material-icons medium">FS</i>
+              <h5>Fast Response</h5>
+              <p>Respon yang cepat agar kalian para Gamers tidak perlu menunggu lama untuk memesan Gear Gaming yang kalian inginkan</p>
             </div>
           </div>
           <div class="col m4 s12">
             <div class="card-panel center">
-              <i class="material-icons medium">games</i>
-              <h5>Game Education</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
+              <i class="material-icons medium">GQ</i>
+              <h5>Good Quality</h5>
+              <p>Kalian para Gamers dapat mendapatkan Gear Gaming dengan kualitas terbaik di Gamingforeveryone.com</p>
             </div>
           </div>
           <div class="col m4 s12">
             <div class="card-panel center">
-              <i class="material-icons medium">weekend</i>
-              <h5>Smart Home</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
+              <i class="material-icons medium">FD</i>
+              <h5>Fast Delivery</h5>
+              <p>Kalian para Gamers akan dengan cepat mendapatkan Gear Gaming yang kalian mau di Gamingforeveryone.com</p>
             </div>
           </div>
         </div>
@@ -222,11 +238,12 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="index.jsp" method="post">
-                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>">
+                         <img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         </div>
                         <div class="card-content">
                           <p><%=data.get(x).getbrand()%>&nbsp;<%=data.get(x).getnama()%></p> 
-                          <a href="tampil.jsp">Rp. <%=data.get(x).getharga()%></a>
+                            <a href="tampil.jsp">Rp. <%=data.get(x).getharga()%></a>
                           <input type="hidden" name="id" value="<%=data.get(x).getid()%>">
                           <input type="hidden" name="nama" value="<%=data.get(x).getnama()%>">
                           <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
@@ -296,7 +313,7 @@
               <div class="card small">
                 <div class="card-image">
                     <form action="index.jsp" method="post">
-                        <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
+                         <a href="tampil.jsp?id=<%=data.get(x).getid()%>"><img src="img/<%=data.get(x).getfoto1()%>" width="300px" height="150px"></a>
                         <input type="hidden" name="foto" value="<%=data.get(x).getfoto1()%>">
                         </div>
                         <div class="card-content">
@@ -324,7 +341,7 @@
       <div class="container">
         <h3 class="light grey-text text-darken-3 center">Contact Us</h3>
         <div class="row">
-          <div class="col m5 s12">
+          <div class="col m6 s14">
             <div class="card-panel red darken-2 center white-text">
               <i class="material-icons">email</i>
               <h5>Alamat</h5>
@@ -335,36 +352,16 @@
                   Tangerang Selatan
                   15310</p>
             </div>
-            <ul class="collection with-header">
-              <li class="collection-header"><h4 class="center">Contact</h4></li>
-              <li class="collection-item"> <i class="material-icons">I</i> instagram:  @GFE_Gaming</li>
-              <li class="collection-item"><i class="material-icons">T</i>  081211455647</li>
-              <li class="collection-item"><i class="material-icons">F</i> Facebook : GFE_Gaming</li>
-            </ul>
+            
           </div>
-          <div class="col m7 s12">
-            <form>
-              <div class="card-panel">
-                <h5>Please Fill Out This form</h5>
-                <div class="input-field">
-                <input type="text" name="name" id="name" required class="validate">
-                <label for="name">Name</label>
-              </div>
-              <div class="input-field">
-                <input type="email" name="email" id="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field">
-                <input type="text" name="phone" id="phone" required class="validate">
-                <label for="phone">Phone Number</label>
-              </div>
-              <div class="input-field">
-                <textarea name="message" id="message" class="materialize-textarea"></textarea>
-                <label for="message">Message</label>
-              </div>
-              <button type="submit" class="btn red darken-2">Send</button>
-              </div>
-            </form>
+          <div class="col m6 s12">
+              <center>
+            <ul class="collection with-header">
+                <li class="collection-item"> <img src="img/instagram.png" width="30" height="30"><br>@GFE_Gaming</li>
+              <li class="collection-item"><img src="img/wa.jpg" width="30" height="30"><br>081211455647</li>
+              <li class="collection-item"><img src="img/facebook.png" width="30" height="30"><br>GFE_Gaming</li>
+            </ul>
+                  </center>
           </div>
         </div>
       </div>
